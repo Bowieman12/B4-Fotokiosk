@@ -1,0 +1,7 @@
+Het is CORRECT dat de toetscode nog vol fouten zit.
+Stappen voor student:
+ - Downloaden + uitpakken zip naar www-map
+ - Ga naar http://localhost/fb33/
+ - Importeer de sql-file uit de doc-map
+ - Lees de textfile in de doc-map, hier zit de opdracht in
+ - Voor het inleveren: lees inleveren.txt in de doc-map
