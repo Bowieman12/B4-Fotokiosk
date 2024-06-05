@@ -11,7 +11,7 @@ require_once '../backend/config.php';
 <!doctype html>
 <html lang="nl">
 <head>
-    <title>TOETS <?php echo ucfirst($app_name); ?></title>
+    <title>B4-Fotokiosk</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/css/normalize.css">
@@ -22,7 +22,7 @@ require_once '../backend/config.php';
     <?php require_once '../header.php'; ?>
 
     <div class="container">
-        <h3>Aanpassen</h3>
+        <h3>Edit</h3>
         <?php
         // Haal id uit de URL
         $id = $_GET['id'];

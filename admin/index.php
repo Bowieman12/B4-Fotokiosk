@@ -25,23 +25,23 @@ require_once '../backend/config.php';
 
         <?php
         require_once '../backend/conn.php';
-        $query = "SELECT * FROM films";
+        $query = "SELECT * FROM fotos";
         $statement = $conn->prepare($query);
         $statement->execute();
-        $films = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $fotos = $statement->fetchAll(PDO::FETCH_ASSOC);
         ?>
 
         <table>
             <tr>
-                <th>Titel</th>
-                <th>Beschrijving</th>
+                <th>Naam</th>
+                <th>Datum</th>
                 <th>Aanpassen</th>
             </tr>
-            <?php foreach($films as $film): ?>
+            <?php foreach($fotos as $foto): ?>
                 <tr>
-                    <td><?php echo htmlspecialchars($film['titel']); ?></td>
-                    <td><?php echo htmlspecialchars($film['beschrijving']); ?></td>
-                    <td><a href="edit.php?id=<?php echo $film['id']; ?>">aanpassen</a></td>
+                    <td><?php echo htmlspecialchars($foto['naam']); ?></td>
+                    <td><?php echo htmlspecialchars($foto['datum']); ?></td>
+                    <td><a href="edit.php?id=<?php echo $foto['id']; ?>">aanpassen</a></td>
                 </tr>
             <?php endforeach; ?>
         </table>
