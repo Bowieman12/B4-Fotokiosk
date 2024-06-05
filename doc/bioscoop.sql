@@ -44,3 +44,4 @@ insert into films (titel, beschrijving, genre, leeftijd, premiere) values ('Cock
 insert into films (titel, beschrijving, genre, leeftijd, premiere) values ('Angels in the Outfield', 'Cras in purus eu magna vulputate luctus.', 'horror', 'NULL', 0);
 insert into films (titel, beschrijving, genre, leeftijd, premiere) values ('Great Train Robbery, The', 'Donec ut dolor.', 'romantisch', '16', 0);
 insert into films (titel, beschrijving, genre, leeftijd, premiere) values ('Man Escaped, A (Un  condamné à mort s''est échappé ou Le vent souffle où il veut)', 'Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus.', 'romantisch', 'NULL', 0);
+customer
