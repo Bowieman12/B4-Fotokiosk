@@ -1,7 +1,0 @@
-Inleveren: een zip van je hele map.
-Let op: .rar, .7z, enzovoort wordt niet geaccepteerd!
-
-Eenvoudigste manier:
-    -  Rechtsklikken op je map
-    -  Klik 'Kopieeren naar'
-    -  Klik 'Gecomprimeerde (gezipte) map'
