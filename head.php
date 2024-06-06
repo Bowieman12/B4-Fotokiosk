@@ -1,5 +1,5 @@
 <head>
-    <title>TOETS <?php echo ucfirst($app_name); ?></title>
+    <title>B4-FOTOKIOSK</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="<?php echo $base_url; ?>/css/normalize.css">
