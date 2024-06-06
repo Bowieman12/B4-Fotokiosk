@@ -29,10 +29,10 @@ require_once '../backend/config.php';
 
         // Voer query uit
         require_once '../backend/conn.php';
-        $query = "SELECT * FROM films WHERE id = :id";
+        $query = "SELECT * FROM fotos WHERE id = :id";
         $statement = $conn->prepare($query);
         $statement->execute([":id" => $id]);
-        $film = $statement->fetch(PDO::FETCH_ASSOC);
+        $fotos = $statement->fetch(PDO::FETCH_ASSOC);
         ?>
 
         <!-- Formulier voor edit: -->
@@ -41,31 +41,14 @@ require_once '../backend/config.php';
             <input type="hidden" name="id" value="<?php echo $id; ?>">
             
             <div class="form-group">
-                <label for="titel">Titel:</label>
-                <input type="text" name="titel" id="titel" value="<?php echo htmlspecialchars($film['titel']); ?>">
+                <label for="naam">Naam:</label>
+                <input type="text" name="naam" id="naam" value="<?php echo htmlspecialchars($foto['naam']); ?>">
             </div>
             <div class="form-group">
-                <label for="beschrijving">Beschrijving:</label>
-                <textarea name="beschrijving" id="beschrijving" cols="30" rows="10"><?php echo htmlspecialchars($film['beschrijving']); ?></textarea>
+                <label for="datum">Datum:</label>
+                <textarea name="datum" id="datum" cols="30" rows="10"><?php echo htmlspecialchars($foto['Datum']); ?></textarea>
             </div>
-            <div class="form-group">
-                <label for="genre">Genre:</label>
-                <select name="genre" id="genre">
-                    <option value="horror" <?php if ($film['genre'] == 'horror') echo 'selected'; ?>>Horror</option>
-                    <option value="romantisch" <?php if ($film['genre'] == 'romantisch') echo 'selected'; ?>>Romantisch</option>
-                    <option value="comedy" <?php if ($film['genre'] == 'comedy') echo 'selected'; ?>>Comedy</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="leeftijd">Leeftijd:</label>
-                <input type="number" name="leeftijd" id="leeftijd" value="<?php echo htmlspecialchars($film['leeftijd']); ?>">
-            </div>
-            <div class="form-group">
-                <label for="premiere">Première:</label>
-                <input type="checkbox" name="premiere" id="premiere" <?php if ($film['premiere']) echo 'checked'; ?>>
-            </div>
-            <input type="submit" value="Opslaan">
-        </form>
+\
 
         <!-- Formulier voor delete: -->
         <form action="../backend/adminController.php" method="POST">
