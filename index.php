@@ -44,6 +44,16 @@ require_once 'head.php';
         .grid-item p {
             margin: 0;
         }
+        .frontpage{
+            text-align: center;
+   
+        }
+
+        .frontpage img
+        {
+            margin-top: 100px;
+        }
+      
     </style>
 </head>
 <body>
@@ -51,10 +61,12 @@ require_once 'head.php';
     <?php require_once 'header.php'; ?>
     
     <div class="container">
+            <div class="frontpage">
+                <h1 style="color: darkgrey;"><strong>Welkom tot de Fotokiosk!</strong></h1>
+                <img src="img\logo-big-fill-only.png" alt="developerland logo">
+            </div>
 
-        <p style="color: darkgrey;"><strong>DIT ZIJN DE MOOIE FOTO'S DIE GEMAAKT ZIJN!</strong></p>
-
-        <?php
+        <!-- <?php
         require_once 'backend/conn.php';
         $query = "SELECT * FROM fotos";
         $statement = $conn->prepare($query);
@@ -68,7 +80,7 @@ require_once 'head.php';
                 <h4><?php echo $foto['titel']; ?></h4>
                 <p>Taal: <?php echo $foto['taal']; ?></p>
                 <p><?php echo $foto['beschrijving']; ?></p>
-            </div>
+            </div> -->
         <?php endforeach; ?>
     </div>
 </body>
