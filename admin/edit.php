@@ -42,13 +42,16 @@ require_once '../backend/config.php';
             
             <div class="form-group">
                 <label for="naam">Naam:</label>
-                <input type="text" name="naam" id="naam" value="<?php echo htmlspecialchars($foto['naam']); ?>">
+                <input type="text" name="naam" id="naam" value="<?php echo htmlspecialchars($fotos['naam']); ?>">
             </div>
             <div class="form-group">
                 <label for="datum">Datum:</label>
-                <textarea name="datum" id="datum" cols="30" rows="10"><?php echo htmlspecialchars($foto['Datum']); ?></textarea>
+                <input type="date" name="datum" id="datum" value="<?php echo htmlspecialchars($fotos['datum']); ?>">
             </div>
-\
+
+            <!-- Aanpas knop -->
+            <input type="submit" value="Opslaan">
+        </form>
 
         <!-- Formulier voor delete: -->
         <form action="../backend/adminController.php" method="POST">

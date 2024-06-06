@@ -41,38 +41,22 @@ if ($action == "create") {
 }
 
 if ($action == "edit") {
-    // Haal variabelen op, doe inputvalidatie
-    $titel = $_POST['titel'];
-    if (empty($titel)) {
-        die("Vul een titel in");
+    $naam = $_POST['naam'];
+    if (empty($naam)) {
+        die("Vul een naam in");
     }
 
-    $beschrijving = $_POST['beschrijving'];
-    if (empty($beschrijving)) {
-        die("Vul de beschrijving in");
+    $datum = $_POST['datum'];
+    if (empty($datum)) {
+        die("Vul de datum in");
     }
-
-    $genre = $_POST['genre'];
-    if (empty($genre)) {
-        die("Kies een genre");
-    }
-
-    $leeftijd = $_POST['leeftijd'];
-    if (empty($leeftijd) && $leeftijd !== '0') {
-        die("Vul een leeftijd in");
-    }
-
-    $premiere = isset($_POST['premiere']) ? 1 : 0;
 
     require_once 'conn.php';
-    $query = "UPDATE films SET titel = :titel, beschrijving = :beschrijving, genre = :genre, leeftijd = :leeftijd, premiere = :premiere WHERE id = :id";
+    $query = "UPDATE fotos SET naam = :naam, datum = :datum WHERE id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([
-        ":titel" => $titel,
-        ":beschrijving" => $beschrijving,
-        ":genre" => $genre,
-        ":leeftijd" => $leeftijd,
-        ":premiere" => $premiere,
+        ":naam" => $naam,
+        ":datum" => $datum,
         ":id" => $_POST['id']
     ]);
 
@@ -82,7 +66,7 @@ if ($action == "edit") {
 
 if ($action == "delete") {
     require_once 'conn.php';
-    $query = "DELETE FROM films WHERE id = :id";
+    $query = "DELETE FROM fotos WHERE id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([
         ":id" => $_POST['id']
