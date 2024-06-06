@@ -31,6 +31,7 @@ require_once 'head.php';
             padding: 20px;
             border: 1px solid #ddd;
             border-radius: 5px;
+            text-align: center;
         }
 
         .grid-item.important {
@@ -44,29 +45,28 @@ require_once 'head.php';
         .grid-item p {
             margin: 0;
         }
-        .frontpage{
+
+        .frontpage {
             text-align: center;
-   
         }
 
-        .frontpage img
-        {
+        .frontpage img {
             margin-top: 100px;
         }
       
-    </style>
+</style>
 </head>
 <body>
 
     <?php require_once 'header.php'; ?>
     
     <div class="container">
-            <div class="frontpage">
-                <h1 style="color: darkgrey;"><strong>Welkom tot de Fotokiosk!</strong></h1>
-                <img src="img\logo-big-fill-only.png" alt="developerland logo">
-            </div>
+        <div class="frontpage">
+            <h1 style="color: darkgrey;"><strong>Welkom tot de Fotokiosk!</strong></h1>
+            <img src="img/logo-big-fill-only.png" alt="developerland logo">
+        </div>
 
-        <!-- <?php
+        <?php
         require_once 'backend/conn.php';
         $query = "SELECT * FROM fotos";
         $statement = $conn->prepare($query);
@@ -77,11 +77,13 @@ require_once 'head.php';
         <div class="grid-container">
         <?php foreach($fotos as $foto): ?>
             <div class="grid-item <?php if($foto['nieuw']) echo 'important'; ?>">
-                <h4><?php echo $foto['titel']; ?></h4>
-                <p>Taal: <?php echo $foto['taal']; ?></p>
-                <p><?php echo $foto['beschrijving']; ?></p>
-            </div> -->
+                <h4><?php echo htmlspecialchars($foto['titel']); ?></h4>
+                <p>Taal: <?php echo htmlspecialchars($foto['taal']); ?></p>
+                <p><?php echo htmlspecialchars($foto['beschrijving']); ?></p>
+                <img src="<?php echo htmlspecialchars($foto['foto_url']); ?>" alt="<?php echo htmlspecialchars($foto['titel']); ?>" style="width: 100%; height: auto;">
+            </div>
         <?php endforeach; ?>
+        </div>
     </div>
 </body>
 </html>
