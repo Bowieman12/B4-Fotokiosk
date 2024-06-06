@@ -5,23 +5,24 @@
 session_start();
 require_once 'setup.toets.php';
 require_once 'backend/config.php';
-?>
-
-<!doctype html>
-<html lang="nl">
-
-<?php
 require_once 'head.php';
+
+// Foto's ophalen uit de map fotos/0_Zondag/
+$directory = 'fotos/0_Zondag/';
+$photos = glob($directory . "*.jpg");
+$photos = array_merge($photos, glob($directory . "*.jpeg"));
+$photos = array_merge($photos, glob($directory . "*.png"));
 ?>
+
 <head>
-<style>
+    <style>
         body {
             font-family: Arial, sans-serif;
         }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             padding: 20px;
         }
@@ -34,16 +35,10 @@ require_once 'head.php';
             text-align: center;
         }
 
-        .grid-item.important {
-            background-color: #f8d7da;
-        }
-
-        .grid-item h4 {
-            margin: 0 0 10px;
-        }
-
-        .grid-item p {
-            margin: 0;
+        .grid-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
 
         .frontpage {
@@ -53,8 +48,7 @@ require_once 'head.php';
         .frontpage img {
             margin-top: 100px;
         }
-      
-</style>
+    </style>
 </head>
 <body>
 
@@ -66,24 +60,36 @@ require_once 'head.php';
             <img src="img/logo-big-fill-only.png" alt="developerland logo">
         </div>
 
-        <?php
-        require_once 'backend/conn.php';
-        $query = "SELECT * FROM fotos";
-        $statement = $conn->prepare($query);
-        $statement->execute();
-        $fotos = $statement->fetchAll(PDO::FETCH_ASSOC);
-        ?>
-
-        <div class="grid-container">
-        <?php foreach($fotos as $foto): ?>
-            <div class="grid-item <?php if($foto['nieuw']) echo 'important'; ?>">
-                <h4><?php echo htmlspecialchars($foto['titel']); ?></h4>
-                <p>Taal: <?php echo htmlspecialchars($foto['taal']); ?></p>
-                <p><?php echo htmlspecialchars($foto['beschrijving']); ?></p>
-                <img src="<?php echo htmlspecialchars($foto['foto_url']); ?>" alt="<?php echo htmlspecialchars($foto['titel']); ?>" style="width: 100%; height: auto;">
-            </div>
-        <?php endforeach; ?>
+        <div class="grid-container" id="photo-grid">
+            <?php
+            // Toon de eerste 9 foto's in de grid
+            for ($i = 0; $i < 9; $i++): 
+                $photo = $photos[$i % count($photos)]; // Zorg ervoor dat er altijd 9 foto's worden getoond
+            ?>
+                <div class="grid-item">
+                    <img src="<?php echo htmlspecialchars($photo); ?>" alt="Foto <?php echo $i + 1; ?>">
+                </div>
+            <?php endfor; ?>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const gridItems = document.querySelectorAll('.grid-item img');
+            const photos = <?php echo json_encode(array_map('basename', $photos)); ?>;
+            let currentIndex = 0;
+
+            function showNextPhotos() {
+                for (let i = 0; i < gridItems.length; i++) {
+                    let imgIndex = (currentIndex + i) % photos.length;
+                    gridItems[i].src = '<?php echo $directory; ?>' + photos[imgIndex];
+                }
+                currentIndex = (currentIndex + gridItems.length) % photos.length;
+            }
+
+            setInterval(showNextPhotos, 60000);
+            showNextPhotos();
+        });
+    </script>
 </body>
 </html>
